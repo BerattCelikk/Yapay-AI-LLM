@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Karakter kodlaması UTF-8 olarak belirleniyor -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive tasarım için viewport ayarı -->
+    <title>Medical Lab Report Analyzer</title> <!-- Sayfa başlığı -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> <!-- Bootstrap CSS kütüphanesi -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> <!-- Bootstrap ikonları -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Özel CSS dosyası -->
+</head>
+<body>
+    <!-- Üst bilgi/başlık bölümü -->
+    <div class="header">
+        <div class="container"> <!-- İçerik kapsayıcısı -->
+            <h1 class="text-center">Medical Lab Report Analyzer</h1> <!-- Ana başlık -->
+            <p class="text-center">Upload your lab reports for AI-powered analysis and recommendations</p> <!-- Açıklama metni -->
+        </div>
+    </div>
+    
+    <!-- Ana içerik bölümü -->
+    <div class="container mt-4"> <!-- Üstten 4 birim margin ile konteyner -->
+        <!-- Hata mesajı gösterimi -->
+        {% if error %} <!-- Flask template koşulu: error değişkeni varsa -->
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"> <!-- Kırmızı renkli, kapatılabilir uyarı kutusu -->
+            {{ error }} <!-- Hata mesajı içeriği -->
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> <!-- Kapatma butonu -->
+        </div>
+        {% endif %} <!-- Koşul sonu -->
+        
+        <!-- Dosya yükleme konteyneri -->
+        <div class="upload-container">
+            <h2 class="section-header"><i class="bi bi-cloud-upload"></i> Upload Lab Report</h2> <!-- Bulut yükleme ikonlu başlık -->
+            <form method="POST" enctype="multipart/form-data"> <!-- Dosya yükleme için form -->
+                <div class="mb-3"> <!-- Alt bileşenlerle arasında boşluk için mb-3 sınıfı -->
+                    <label for="labFile" class="form-label">Select a .txt file containing lab results</label> <!-- Dosya seçme etiketi -->
+                    <input type="file" name="lab_file" accept=".txt" class="form-control" required id="labFile"> <!-- Dosya seçme inputu, sadece .txt kabul eder -->
+                    <div class="form-text">Supported formats: Plain text files with lab results</div> <!-- Desteklenen formatlar açıklaması -->
+                </div>
+                <button type="submit" class="btn btn-gradient"> <!-- Gradient stilindeki buton -->
+                    <i class="bi bi-file-medical"></i> Analyze Report <!-- Tıbbi dosya ikonu ve buton metni -->
+                </button>
+            </form>
+        </div>
+        
+        <!-- Yüklenmiş dosyaların listesi -->
+        {% if uploaded_files %} <!-- Flask template koşulu: uploaded_files değişkeni varsa -->
+        <div class="uploaded-files">
+            <h3 class="section-header"><i class="bi bi-folder2-open"></i> Previously Uploaded Files</h3> <!-- Klasör ikonlu başlık -->
+            <div class="file-list"> <!-- Dosya listesi konteyneri -->
+                {% for file in uploaded_files %} <!-- Dosya listesi üzerinde döngü -->
+                <div class="file-item d-flex justify-content-between align-items-center"> <!-- Her dosya öğesi, yatayda ortalanmış -->
+                    <span class="file-name"><i class="bi bi-file-text"></i> {{ file }}</span> <!-- Dosya adı ve metin dosyası ikonu -->
+                    <div class="file-actions"> <!-- Dosya işlemleri buton grubu -->
+                        <a href="{{ url_for('view_file', filename=file) }}" target="_blank" class="btn btn-sm btn-outline-info me-1"> <!-- Dosyayı görüntüle butonu -->
+                            <i class="bi bi-eye"></i> View <!-- Göz ikonu ve metin -->
+                        </a>
+                        <button class="btn btn-sm btn-outline-danger delete-file" data-filename="{{ file }}"> <!-- Dosyayı sil butonu, data attribute ile dosya adı -->
+                            <i class="bi bi-trash"></i> Delete <!-- Çöp kutusu ikonu ve metin -->
+                        </button>
+                    </div>
+                </div>
+                {% endfor %} <!-- Döngü sonu -->
+            </div>
+        </div>
+        {% endif %} <!-- Koşul sonu -->
+        
+        <!-- Analiz sonuçları bölümü -->
+        {% if summary %} <!-- Flask template koşulu: summary değişkeni varsa -->
+        <div class="result-container">
+            <div class="d-flex justify-content-between align-items-center mb-4"> <!-- Esnek kutu, içeriği yatayda iki uca yaslar -->
+                <h2 class="section-header mb-0"><i class="bi bi-clipboard2-pulse"></i> Analysis Results</h2> <!-- Tıbbi tablo ikonlu başlık -->
+                <button class="btn btn-outline-primary" onclick="window.print()"> <!-- Yazdırma butonu, tıklandığında yazdırma penceresi açar -->
+                    <i class="bi bi-printer"></i> Print Report <!-- Yazıcı ikonu ve metin -->
+                </button>
+            </div>
+            
+            <div class="analysis-result">
+                {{ summary|safe }} <!-- Özet içeriği, safe filtresi ile HTML olarak render edilir -->
+            </div>
+            
+            {% if recommendations %} <!-- Flask template koşulu: recommendations değişkeni varsa -->
+            <div class="mt-4"> <!-- Üstten 4 birim margin -->
+                {{ recommendations|safe }} <!-- Öneriler içeriği, safe filtresi ile HTML olarak render edilir -->
+            </div>
+            {% endif %} <!-- Koşul sonu -->
+        </div>
+        {% endif %} <!-- Koşul sonu -->
+    </div>
+    
+    <!-- Alt bilgi (footer) bölümü -->
+    <footer class="footer">
+        <div class="container text-center"> <!-- Ortalanmış içerik konteyneri -->
+            <p>Medical Lab Report Analyzer &copy; 2023</p> <!-- Telif hakkı bilgisi -->
+            <p class="small">This tool provides AI-generated analysis and should not replace professional medical advice.</p> <!-- Uyarı metni -->
+        </div>
+    </footer>
+
+    <!-- JavaScript kütüphaneleri -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JavaScript kütüphanesi -->
+    <script>
+        // Dosya silme işlevselliği
+        document.querySelectorAll('.delete-file').forEach(button => { // Tüm silme butonlarını seç
+            button.addEventListener('click', function() { // Her butona tıklama olay dinleyicisi ekle
+                const filename = this.getAttribute('data-filename'); // Silinecek dosya adını al
+                if (confirm(`Are you sure you want to delete ${filename}?`)) { // Onay iletişim kutusu göster
+                    fetch(`/delete_file/${filename}`, { // Sunucuya DELETE isteği gönder
+                        method: 'POST', // POST metodu kullan
+                        headers: {
+                            'Content-Type': 'application/json', // İçerik tipi JSON olarak ayarla
+                        },
+                    })
+                    .then(response => response.json()) // Yanıtı JSON formatında işle
+                    .then(data => {
+                        if (data.success) { // İşlem başarılıysa
+                            alert('File deleted successfully'); // Başarı mesajı göster
+                            location.reload(); // Sayfayı yenile
+                        } else {
+                            alert('Error deleting file: ' + data.message); // Hata mesajı göster
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Konsola hatayı yazdır
+                        alert('Error deleting file'); // Hata mesajı göster
+                    });
+                }
+            });
+        });
+
+        // Yükleme animasyonu
+        document.querySelector('form').addEventListener('submit', function() { // Form gönderme olayı dinleyicisi
+            const submitBtn = this.querySelector('button[type="submit"]'); // Gönderme butonunu seç
+            submitBtn.innerHTML = '<span class="loading"></span> Analyzing...'; // Buton içeriğini yükleme animasyonu ile değiştir
+            submitBtn.disabled = true; // Butonu devre dışı bırak
+        });
+    </script>
+</body>
+</html>

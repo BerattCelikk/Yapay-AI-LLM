@@ -1,0 +1,418 @@
+/* CSS Değişkenleri (Custom Properties) - Tema renkleri */
+:root {
+    --primary-color: #2c3e50;       /* Ana renk: Koyu mavi */
+    --secondary-color: #3498db;     /* İkincil renk: Mavi */
+    --accent-color: #e74c3c;        /* Vurgu rengi: Kırmızı */
+    --success-color: #27ae60;       /* Başarı rengi: Yeşil */
+    --warning-color: #f39c12;       /* Uyarı rengi: Turuncu */
+    --info-color: #3498db;          /* Bilgi rengi: Mavi */
+    --light-bg: #f8f9fa;            /* Açık arkaplan rengi */
+    --dark-bg: #343a40;             /* Koyu arkaplan rengi */
+}
+
+/* Temel sayfa stilleri */
+body {
+    background-color: var(--light-bg);  /* Arkaplan rengi */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ailesi */
+    line-height: 1.6;                   /* Satır yüksekliği */
+    color: #333;                        /* Metin rengi */
+}
+
+/* Üst bilgi (header) stilleri */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradyan arkaplan */
+    color: white;           /* Metin rengi beyaz */
+    padding: 2.5rem 0;      /* İç boşluk: üst-alt 2.5rem, sağ-sol 0 */
+    margin-bottom: 2rem;    /* Alt dış boşluk: 2rem */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Gölge efekti */
+}
+
+/* Yükleme ve sonuç konteyner stilleri */
+.upload-container, .result-container {
+    background: white;                  /* Beyaz arkaplan */
+    border-radius: 12px;                /* Köşe yuvarlaklığı */
+    padding: 2rem;                      /* İç boşluk */
+    box-shadow: 0 0 20px rgba(0,0,0,0.08); /* Hafif gölge */
+    margin-bottom: 2rem;                /* Alt dış boşluk */
+    transition: transform 0.3s ease;    /* Dönüşüm geçiş efekti */
+}
+
+/* Yükleme ve sonuç konteyner hover efekti */
+.upload-container:hover, .result-container:hover {
+    transform: translateY(-2px);        /* Yukarı doğru hafif kaydırma */
+}
+
+/* Sonuç konteyner ek sol kenarlık */
+.result-container {
+    border-left: 4px solid var(--secondary-color); /* Sol kenarlık */
+}
+
+/* Normal değer stili */
+.normal-value {
+    color: var(--success-color);        /* Yeşil metin rengi */
+    font-weight: bold;                  /* Kalın yazı */
+    background-color: rgba(39, 174, 96, 0.1); /* Şeffaf yeşil arkaplan */
+    padding: 0.1rem 0.3rem;             /* İç boşluk */
+    border-radius: 4px;                 /* Hafif köşe yuvarlaklığı */
+}
+
+/* Anormal değer stili */
+.abnormal-value {
+    color: var(--accent-color);         /* Kırmızı metin rengi */
+    font-weight: bold;                  /* Kalın yazı */
+    background-color: rgba(231, 76, 60, 0.1); /* Şeffaf kırmızı arkaplan */
+    padding: 0.1rem 0.3rem;             /* İç boşluk */
+    border-radius: 4px;                 /* Hafif köşe yuvarlaklığı */
+    animation: pulse 2s infinite;       /* Nabız atımı animasyonu */
+}
+
+/* Nabız animasyonu tanımı */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }    /* Başlangıç ve bitiş: tam opak */
+    50% { opacity: 0.7; }       /* Orta nokta: %70 opak */
+}
+
+/* Normal değer liste öğesi stili */
+.normal-value-item {
+    color: var(--success-color);        /* Yeşil metin rengi */
+    font-weight: 500;                   /* Orta kalınlıkta yazı */
+    padding-left: 1.5rem;               /* Sol iç boşluk */
+    position: relative;                 /* Göreceli konumlandırma */
+    margin-bottom: 0.5rem;              /* Alt dış boşluk */
+}
+
+/* Normal değer liste öğesi öncesi içerik (onay işareti) */
+.normal-value-item::before {
+    content: "✅";                      /* Onay emojisi */
+    position: absolute;                 /* Mutlak konumlandırma */
+    left: 0;                            /* Sola dayalı */
+    font-size: 1.2em;                   /* Yazı boyutu */
+}
+
+/* Anormal değer liste öğesi stili */
+.abnormal-value-item {
+    color: var(--accent-color);         /* Kırmızı metin rengi */
+    font-weight: 500;                   /* Orta kalınlıkta yazı */
+    padding-left: 1.5rem;               /* Sol iç boşluk */
+    position: relative;                 /* Göreceli konumlandırma */
+    margin-bottom: 0.5rem;              /* Alt dış boşluk */
+}
+
+/* Anormal değer liste öğesi öncesi içerik (çarpı işareti) */
+.abnormal-value-item::before {
+    content: "❌";                      /* Çarpı emojisi */
+    position: absolute;                 /* Mutlak konumlandırma */
+    left: 0;                            /* Sola dayalı */
+    font-size: 1.2em;                   /* Yazı boyutu */
+}
+
+/* Öneri kartı stili */
+.recommendation-card {
+    background-color: #e8f4f8;          /* Açık mavi arkaplan */
+    border-left: 4px solid var(--info-color); /* Sol mavi kenarlık */
+    border-radius: 8px;                 /* Köşe yuvarlaklığı */
+    padding: 1.5rem;                    /* İç boşluk */
+    margin-bottom: 1rem;                /* Alt dış boşluk */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Geçiş efektleri */
+}
+
+/* Öneri kartı hover efekti */
+.recommendation-card:hover {
+    transform: translateY(-3px);        /* Yukarı kaydırma */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Gölge efekti */
+}
+
+/* Yüksek öncelikli öneri kartı stili */
+.recommendation-card.priority-high {
+    border-left-color: var(--accent-color); /* Sol kenarlık kırmızı */
+    background-color: rgba(231, 76, 60, 0.05); /* Şeffaf kırmızı arkaplan */
+}
+
+/* Orta öncelikli öneri kartı stili */
+.recommendation-card.priority-medium {
+    border-left-color: var(--warning-color); /* Sol kenarlık turuncu */
+    background-color: rgba(243, 156, 18, 0.05); /* Şeffaf turuncu arkaplan */
+}
+
+/* Öneri ikonu stili */
+.recommendation-icon {
+    font-size: 2rem;                    /* Büyük ikon boyutu */
+    color: var(--secondary-color);      /* Mavi ikon rengi */
+    margin-bottom: 1rem;                /* Alt dış boşluk */
+}
+
+/* Yüksek öncelikli öneri ikonu rengi */
+.recommendation-card.priority-high .recommendation-icon {
+    color: var(--accent-color);         /* Kırmızı ikon rengi */
+}
+
+/* Orta öncelikli öneri ikonu rengi */
+.recommendation-card.priority-medium .recommendation-icon {
+    color: var(--warning-color);        /* Turuncu ikon rengi */
+}
+
+/* Rapor tipi rozet stili */
+.report-type-badge {
+    font-size: 0.9rem;                  /* Yazı boyutu */
+    padding: 0.4rem 0.8rem;             /* İç boşluk */
+    border-radius: 20px;                /* Yuvarlak köşeler */
+    background: linear-gradient(45deg, var(--secondary-color), var(--info-color)); /* Gradyan arkaplan */
+    color: white;                       /* Beyaz metin rengi */
+}
+
+/* Bölüm başlığı stili */
+.section-header {
+    border-bottom: 2px solid #e9ecef;   /* Alt kenarlık */
+    padding-bottom: 0.5rem;             /* Alt iç boşluk */
+    margin-bottom: 1.5rem;              /* Alt dış boşluk */
+    color: var(--primary-color);        /* Koyu mavi metin rengi */
+    font-weight: 600;                   /* Kalın yazı */
+}
+
+/* Kritik bölüm başlığı stili */
+.section-header.critical-section {
+    color: var(--accent-color);         /* Kırmızı metin rengi */
+    border-bottom-color: rgba(231, 76, 60, 0.3); /* Şeffaf kırmızı alt kenarlık */
+}
+
+/* Öneri bölümü başlığı stili */
+.section-header.recommendation-section {
+    color: var(--success-color);        /* Yeşil metin rengi */
+    border-bottom-color: rgba(39, 174, 96, 0.3); /* Şeffaf yeşil alt kenarlık */
+}
+
+/* Tıbbi bulgular listesi stilleri */
+.medical-findings, .medical-findings-critical, .medical-sub-findings {
+    list-style-type: none;              /* Liste işareti yok */
+    padding-left: 0;                    /* Sol iç boşluk yok */
+}
+
+/* Tıbbi bulgular liste öğesi stili */
+.medical-findings li, .medical-findings-critical li {
+    padding: 0.5rem 0;                  /* İç boşluk */
+    border-bottom: 1px solid #f0f0f0;   /* Alt kenarlık */
+    position: relative;                 /* Göreceli konumlandırma */
+    padding-left: 1.5rem;               /* Sol iç boşluk */
+}
+
+/* Alt tıbbi bulgular liste öğesi stili */
+.medical-sub-findings li {
+    padding: 0.25rem 0;                 /* Daha az iç boşluk */
+    border-bottom: none;                /* Kenarlık yok */
+    padding-left: 1.5rem;               /* Sol iç boşluk */
+    font-size: 0.95rem;                 /* Daha küçük yazı boyutu */
+    color: #666;                        /* Gri metin rengi */
+}
+
+/* Tıbbi bulgular liste işareti stili */
+.medical-findings li:before {
+    content: "•";                       • Nokta işareti */
+    color: var(--secondary-color);      /* Mavi renk */
+    font-weight: bold;                  /* Kalın yazı */
+    position: absolute;                 /* Mutlak konumlandırma */
+    left: 0;                            /* Sola dayalı */
+}
+
+/* Alt tıbbi bulgular liste işareti stili */
+.medical-sub-findings li:before {
+    content: "◦";                       /* İçi boş daire işareti */
+    color: var(--info-color);           /* Mavi renk */
+    font-weight: bold;                  /* Kalın yazı */
+    position: absolute;                 /* Mutlak konumlandırma */
+    left: 0;                            /* Sola dayalı */
+}
+
+/* Kritik tıbbi bulgular stili */
+.medical-findings-critical {
+    background-color: rgba(231, 76, 60, 0.05); /* Şeffaf kırmızı arkaplan */
+    padding: 1rem;                      /* İç boşluk */
+    border-radius: 8px;                 /* Köşe yuvarlaklığı */
+    border-left: 3px solid var(--accent-color); /* Sol kırmızı kenarlık */
+}
+
+/* Kritik tıbbi bulgular liste öğesi kenarlık rengi */
+.medical-findings-critical li {
+    border-bottom-color: rgba(231, 76, 60, 0.2); /* Şeffaf kırmızı alt kenarlık */
+}
+
+/* Kritik tıbbi bulgular liste işareti stili */
+.medical-findings-critical li:before {
+    content: "⚠";                       /* Uyarı işareti */
+    color: var(--accent-color);         /* Kırmızı renk */
+}
+
+/* Parametre başlığı stili */
+.parameter-header {
+    color: var(--primary-color);        /* Koyu mavi metin rengi */
+    font-weight: 600;                   /* Kalın yazı */
+    margin-top: 1.5rem;                 /* Üst dış boşluk */
+    margin-bottom: 0.5rem;              /* Alt dış boşluk */
+    padding-left: 0.5rem;               /* Sol iç boşluk */
+    border-left: 3px solid var(--secondary-color); /* Sol mavi kenarlık */
+}
+
+/* Hasta bilgisi kartı stili */
+.patient-info-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Açık gri gradyan arkaplan */
+    border-radius: 8px;                 /* Köşe yuvarlaklığı */
+    padding: 1.5rem;                    /* İç boşluk */
+    margin-bottom: 1.5rem;              /* Alt dış boşluk */
+    border-left: 4px solid var(--primary-color); /* Sol koyu mavi kenarlık */
+}
+
+/* Yüklenen dosyalar bölümü stili */
+.uploaded-files {
+    background: white;                  /* Beyaz arkaplan */
+    border-radius: 12px;                /* Köşe yuvarlaklığı */
+    padding: 1.5rem;                    /* İç boşluk */
+    box-shadow: 0 0 15px rgba(0,0,0,0.08); /* Hafif gölge */
+    margin-bottom: 2rem;                /* Alt dış boşluk */
+}
+
+/* Dosya listesi stili */
+.file-list {
+    max-height: 300px;                  /* Maksimum yükseklik */
+    overflow-y: auto;                   /* Dikey kaydırma çubuğu */
+}
+
+/* Dosya öğesi stili */
+.file-item {
+    padding: 0.75rem;                   /* İç boşluk */
+    border-bottom: 1px solid #eee;      /* Alt kenarlık */
+    transition: background-color 0.2s;  /* Arkaplan rengi geçiş efekti */
+}
+
+/* Dosya öğesi hover efekti */
+.file-item:hover {
+    background-color: #f8f9fa;          /* Açık gri arkaplan */
+}
+
+/* Son dosya öğesi kenarlık kaldırma */
+.file-item:last-child {
+    border-bottom: none;                /* Alt kenarlık yok */
+}
+
+/* Gradient buton stili */
+.btn-gradient {
+    background: linear-gradient(45deg, var(--secondary-color), var(--info-color)); /* Mavi gradyan arkaplan */
+    border: none;                       /* Kenarlık yok */
+    color: white;                       /* Beyaz metin rengi */
+    transition: all 0.3s ease;          /* Tüm özellikler için geçiş efekti */
+}
+
+/* Gradient buton hover efekti */
+.btn-gradient:hover {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Koyu mavi gradyan arkaplan */
+    transform: translateY(-2px);        /* Yukarı kaydırma */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Gölge efekti */
+    color: white;                       /* Beyaz metin rengi */
+}
+
+/* Alt bilgi (footer) stili */
+.footer {
+    background: var(--dark-bg);         /* Koyu arkaplan rengi */
+    color: white;                       /* Beyaz metin rengi */
+    padding: 2rem 0;                    /* İç boşluk */
+    margin-top: 3rem;                   /* Üst dış boşluk */
+}
+
+/* Yükleme animasyonu stili */
+.loading {
+    display: inline-block;              /* Satır içi blok */
+    width: 20px;                        /* Genişlik */
+    height: 20px;                       /* Yükseklik */
+    border: 3px solid rgba(255,255,255,.3); /* Şeffaf beyaz kenarlık */
+    border-radius: 50%;                 /* Daire şekli */
+    border-top-color: #fff;             /* Üst kenarlık rengi beyaz */
+    animation: spin 1s ease-in-out infinite; /* Dönme animasyonu */
+}
+
+/* Rapor bölümü stili */
+.report-section {
+    margin-bottom: 2rem;                /* Alt dış boşluk */
+    padding: 1.5rem;                    /* İç boşluk */
+    border-radius: 8px;                 /* Köşe yuvarlaklığı */
+    background-color: white;            /* Beyaz arkaplan */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Hafif gölge */
+}
+
+/* Kritik rapor bölümü stili */
+.report-section.critical-section {
+    background-color: rgba(231, 76, 60, 0.03); /* Şeffaf kırmızı arkaplan */
+    border-left: 3px solid var(--accent-color); /* Sol kırmızı kenarlık */
+}
+
+/* Öneri rapor bölümü stili */
+.report-section.recommendation-section {
+    background-color: rgba(39, 174, 96, 0.03); /* Şeffaf yeşil arkaplan */
+    border-left: 3px solid var(--success-color); /* Sol yeşil kenarlık */
+}
+
+/* Değer karşılaştırma stili */
+.value-comparison {
+    display: inline-block;              /* Satır içi blok */
+    padding: 0.2rem 0.5rem;             /* İç boşluk */
+    border-radius: 4px;                 /* Köşe yuvarlaklığı */
+    font-weight: 500;                   /* Orta kalınlıkta yazı */
+    margin-left: 0.5rem;                /* Sol dış boşluk */
+}
+
+/* Normal değer karşılaştırma stili */
+.value-normal {
+    background-color: rgba(39, 174, 96, 0.1); /* Şeffaf yeşil arkaplan */
+    color: var(--success-color);        /* Yeşil metin rengi */
+}
+
+/* Anormal değer karşılaştırma stili */
+.value-abnormal {
+    background-color: rgba(231, 76, 60, 0.1); /* Şeffaf kırmızı arkaplan */
+    color: var(--accent-color);         /* Kırmızı metin rengi */
+}
+
+/* Dönme animasyonu tanımı */
+@keyframes spin {
+    to { transform: rotate(360deg); }   /* 360 derece dönüş */
+}
+
+/* Mobil cihazlar için medya sorgusu (maksimum 768px genişlik) */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem 0;              /* Daha az iç boşluk */
+    }
+    
+    .header h1 {
+        font-size: 2rem;                /* Daha küçük başlık boyutu */
+    }
+    
+    .upload-container, .result-container {
+        padding: 1.5rem;                /* Daha az iç boşluk */
+    }
+    
+    .recommendation-card {
+        margin-bottom: 1rem;            /* Daha az alt dış boşluk */
+    }
+    
+    .patient-info-card .row > div {
+        margin-bottom: 0.5rem;          /* Alt dış boşluk */
+    }
+    
+    .report-section {
+        padding: 1rem;                  /* Daha az iç boşluk */
+    }
+}
+
+/* Yazdırma stilleri */
+@media print {
+    .header, .upload-container, .footer, .btn {
+        display: none;                  /* Yazdırma sırasında gizle */
+    }
+    
+    .result-container {
+        box-shadow: none;               /* Gölge yok */
+        border: none;                   /* Kenarlık yok */
+    }
+    
+    .recommendation-card {
+        break-inside: avoid;            /* Sayfa sonunda bölünmeyi önle */
+    }
+}

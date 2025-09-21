@@ -1,0 +1,26 @@
+Hasta: Berat Erol Çelik
+Yaş: 21
+Cinsiyet: Erkek
+Tarih: 16 Eylül 2025
+
+1. Tam Kan Sayımı (CBC):
+   - Hemoglobin (Hb): 13.2 g/dL (Normal: 13.5–17.5 g/dL)
+   - Beyaz Kan Hücresi (WBC): 6.8 x10^3/µL (Normal: 4–10 x10^3/µL)
+   - Trombosit (PLT): 210 x10^3/µL (Normal: 150–450 x10^3/µL)
+
+2. Biyokimya:
+   - Açlık Glukozu: 112 mg/dL (Normal: 70–99 mg/dL)
+   - Kolesterol: 210 mg/dL (Normal: <200 mg/dL)
+   - Trigliserid: 160 mg/dL (Normal: <150 mg/dL)
+   - HDL: 38 mg/dL (Normal: >40 mg/dL)
+   - LDL: 140 mg/dL (Normal: <130 mg/dL)
+   - ALT (SGPT): 45 U/L (Normal: 0–40 U/L)
+   - AST (SGOT): 38 U/L (Normal: 0–40 U/L)
+
+3. Vitaminler:
+   - Vitamin D: 18 ng/mL (Normal: 30–100 ng/mL)
+   - Vitamin B12: 410 pg/mL (Normal: 200–900 pg/mL)
+
+4. Diğer:
+   - Kreatinin: 1.0 mg/dL (Normal: 0.6–1.3 mg/dL)
+   - TSH: 2.5 µIU/mL (Normal: 0.4–4.0 µIU/mL)
