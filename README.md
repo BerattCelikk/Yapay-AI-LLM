@@ -45,6 +45,8 @@
 
 ## 📁 Proje Dosya Yapısı
 
+```sh
+
 YAPAY-AI/
 ├── 📁 backend/
 │ ├── 📁 static/css/
@@ -61,6 +63,7 @@ YAPAY-AI/
 │ └── requirements.txt # Bağımlılıklar
 └── 📁 frontend/
 └── index.html # Ana arayüz
+```
 
 ## ⚙️ Kurulum Kılavuzu
 
@@ -169,3 +172,4 @@ YAPAY-AI/
 - AI model doğruluğu kullanılan modele bağlıdır
 
 - Tıbbi teşhis aracı değildir – sadece bilgilendirme amaçlıdır
+
